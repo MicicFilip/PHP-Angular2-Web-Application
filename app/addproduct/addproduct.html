@@ -1,0 +1,24 @@
+<form role="form" [ngFormModel]="addProduct">
+<div class="alert alert-danger" style="display: none;">
+  
+</div>
+ <div class="form-group">
+    <label for="roomName">Ime:</label>
+    <input type="text" class="form-control" ngControl='ime'>
+  </div>
+  <div class="form-group">
+    <label for="kategorija_proizvoda">Kategorija:</label>
+	<select #selectOption (change)='select=selectOption.value' class="form-control" ng-selected="Yes" >
+		 <option *ngFor="#kategorije of kategorija_proizvoda" [value]="kategorije.ID">{{kategorije.IME}}</option>
+	</select>
+  </div>
+  <div class="form-group">
+    <label for="beds">Cena:</label>
+    <input type="text" class="form-control"  ngControl='cena'>
+  </div>
+  <div class="form-group">
+    <label for="beds">Opis:</label>
+    <input type="text" class="form-control"  ngControl='opis'>
+  </div>
+  <button (click)="onAddProduct()" class="btn btn-default">Add proizvod</button>
+</form>

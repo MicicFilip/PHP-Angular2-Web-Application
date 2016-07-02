@@ -1,0 +1,14 @@
+<form role="form" [ngFormModel]="loginForm">
+<div class="alert alert-danger" style="display: none;">
+  
+</div>
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" class="form-control"  ngControl='username'>
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control" ngControl='password'>
+  </div>
+  <button (click)="onLogin()" class="btn btn-default">Login</button>
+</form>

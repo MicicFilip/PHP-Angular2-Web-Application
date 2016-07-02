@@ -1,0 +1,10 @@
+<form role="form" [ngFormModel]="addCategory">
+<div class="alert alert-danger" style="display: none;">
+  
+</div>
+ <div class="form-group">
+    <label for="roomName">Ime:</label>
+    <input type="text" class="form-control" ngControl='ime'>
+  </div>
+  <button (click)="onAddCategory()" class="btn btn-default">Add category</button>
+</form>

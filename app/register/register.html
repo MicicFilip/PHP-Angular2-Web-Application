@@ -1,0 +1,22 @@
+<form role="form" [ngFormModel]="registerForm">
+<div class="alert alert-danger" style="display: none;">
+  
+</div>
+ <div class="form-group">
+    <label for="firstName">First name:</label>
+    <input type="text" class="form-control" ngControl='firstName'>
+  </div>
+   <div class="form-group">
+    <label for="lastName">Last name:</label>
+    <input type="text" class="form-control"  ngControl='lastName'>
+  </div>
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" class="form-control"  ngControl='username'>
+  </div>
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control" ngControl='password'>
+  </div>
+  <button (click)="onRegister()" class="btn btn-default">Register</button>
+</form>

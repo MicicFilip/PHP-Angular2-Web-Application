@@ -1,0 +1,33 @@
+<div class="col-lg-12">
+	<table  class="display" cellspacing="0" >
+	    <thead>
+            <tr>
+                <th>Ime: </th>
+                <th>Kategorija: </th>
+                <th>Cena: </th>
+                <th>Opis: </th>
+                <th>Brisanje: </th>
+                <th>Order: </th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr *ngFor="#proizvod of proizvodi">
+                <td>{{proizvod.IME}}</td>
+                <td>{{proizvod.KATEGORIJA_PROIZVODA_IME}}</td>
+                <td>{{proizvod.CENA}}</td>
+                <td>{{proizvod.OPIS}}</td>
+				 <td>
+                   <button class="btn btn-danger" title="remove" (click)="removeProduct(proizvod.ID)">
+                      <span class="glyphicon glyphicon-remove"></span>
+                   </button>
+                </td>
+                <td>
+                   <button class="btn btn-danger" title="order" (click)="order(proizvod.ID)">
+                      <span class="glyphicon glyphicon-shopping-cart"></span>
+                   </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
