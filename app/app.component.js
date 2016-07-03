@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './mainpage/mainpage.component', './register/register.component', './login/login.component', './addproduct/addproduct.component', "./addcategory/addcategory.component", "./allcategories/allcategories.component", "./allproducts/allproducts.component"], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './mainpage/mainpage.component', './register/register.component', './login/login.component', './addproduct/addproduct.component', "./addcategory/addcategory.component", "./allcategories/allcategories.component", "./allproducts/allproducts.component", "./allorders/allorders.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './mainpage/mainpage.compon
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, mainpage_component_1, register_component_1, login_component_1, addproduct_component_1, addcategory_component_1, allcategories_component_1, allproducts_component_1;
+    var core_1, router_1, mainpage_component_1, register_component_1, login_component_1, addproduct_component_1, addcategory_component_1, allcategories_component_1, allproducts_component_1, allorders_component_1;
     var AppComponent;
     return {
         setters:[
@@ -40,6 +40,9 @@ System.register(['angular2/core', 'angular2/router', './mainpage/mainpage.compon
             },
             function (allproducts_component_1_1) {
                 allproducts_component_1 = allproducts_component_1_1;
+            },
+            function (allorders_component_1_1) {
+                allorders_component_1 = allorders_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -78,7 +81,8 @@ System.register(['angular2/core', 'angular2/router', './mainpage/mainpage.compon
                         { path: '/addCategory', name: 'AddCategory', component: addcategory_component_1.AddCategoryComponent },
                         { path: '/allCategories', name: 'AllCategories', component: allcategories_component_1.AllCategoriesComponent },
                         { path: '/addProduct', name: 'AddProduct', component: addproduct_component_1.AddProductComponent },
-                        { path: '/allProducts', name: 'AllProducts', component: allproducts_component_1.AllProductsComponent }
+                        { path: '/allProducts', name: 'AllProducts', component: allproducts_component_1.AllProductsComponent },
+                        { path: '/allOrders', name: 'AllOrders', component: allorders_component_1.AllOrdersComponent }
                     ]), 
                     __metadata('design:paramtypes', [router_1.Router])
                 ], AppComponent);

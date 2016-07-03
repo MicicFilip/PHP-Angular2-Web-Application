@@ -20,6 +20,7 @@
                    <li *ngIf="isAuth == 'yes'" [class.active]="router.isRouteActive(router.generate(['/AllCategories']))"><a [routerLink]="['./AllCategories']">All Categories</a></li>
                    <li *ngIf="isAuth == 'yes'" [class.active]="router.isRouteActive(router.generate(['/AddProduct']))"><a [routerLink]="['./AddProduct']">Add Product</a></li>
                    <li *ngIf="isAuth == 'yes'" [class.active]="router.isRouteActive(router.generate(['/AllProducts']))"><a [routerLink]="['./AllProducts']">All Products</a></li>
+                   <li *ngIf="isAuth == 'yes'" [class.active]="router.isRouteActive(router.generate(['/AllOrders']))"><a [routerLink]="['./AllOrders']">All Orders</a></li>
 				  <li *ngIf="isAuth == 'yes'" ><a (click)="onLogout()">Logout</a></li>
                </ul>
             </div>

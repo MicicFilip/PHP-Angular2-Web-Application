@@ -1,14 +1,15 @@
 import {Component} from 'angular2/core';
 import {RouteConfig,Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import { MainPageComponent } from './mainpage/mainpage.component';
+import {Pipe} from 'angular2/core';
 import { RegisterComponent } from './register/register.component';
-
 import { LoginComponent}  from './login/login.component';
 import { AddProductComponent } from './addproduct/addproduct.component';
-import {Pipe} from 'angular2/core';
 import {AddCategoryComponent} from "./addcategory/addcategory.component";
 import {AllCategoriesComponent} from "./allcategories/allcategories.component";
 import {AllProductsComponent} from "./allproducts/allproducts.component";
+import {AllOrdersComponent} from "./allorders/allorders.component";
+
 @Component({
     selector: 'moja-aplikacija',
 	templateUrl: 'app/router.html',
@@ -22,7 +23,8 @@ import {AllProductsComponent} from "./allproducts/allproducts.component";
 	{path:'/addCategory', name:'AddCategory', component: AddCategoryComponent},
 	{path:'/allCategories', name:'AllCategories', component: AllCategoriesComponent},
 	{path:'/addProduct', name:'AddProduct', component: AddProductComponent},
-	{path:'/allProducts', name:'AllProducts', component: AllProductsComponent}
+	{path:'/allProducts', name:'AllProducts', component: AllProductsComponent},
+	{path:'/allOrders', name:'AllOrders', component: AllOrdersComponent}
 ])
 
 export class AppComponent { 

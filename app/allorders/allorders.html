@@ -1,0 +1,25 @@
+<div class="col-lg-12">
+    <table  class="display" cellspacing="0" >
+        <thead>
+        <tr>
+            <th>Korisnik: </th>
+            <th>Proizvod: </th>
+            <th>Datum: </th>
+            <th>Obrisi: </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="#porudzbina of porudzbine">
+            <td>{{porudzbina.KORISNICI_ID_USERNAME}}</td>
+            <td>{{porudzbina.PROIZVOD_ID_IME}}</td>
+            <td>{{porudzbina.DATUM}}</td>
+            <td>
+                <button class="btn btn-danger" title="remove" (click)="removeOrder(porudzbina.id)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

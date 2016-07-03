@@ -48,4 +48,22 @@ export class AllProductsComponent {
 		  .subscribe( data => this.postResponse = data);
 	 location.reload();
    }
+
+	public orderProduct(id) {
+		var data = "id="+id;
+		var headers = new Headers();
+		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+		headers.append('token', localStorage.getItem('token'));
+		this.http.post('http://localhost/phpispit/orderproduct.php',data, {headers:headers})
+			.map(res => res)
+			.subscribe( data => this.postResponse = data,
+			err => {
+				var obj = JSON.parse(err._body);
+				document.getElementsByClassName("alert")[0].style.display = "block";
+				document.getElementsByClassName("alert")[0].innerHTML = obj.error.split("\\r\\n").join("<br/>").split("\"").join("");
+			},
+				() => {
+					alert('You have successfully ordered your item');
+				});
+	}
 }
