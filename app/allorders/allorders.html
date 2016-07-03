@@ -11,11 +11,11 @@
 
         <tbody>
         <tr *ngFor="#porudzbina of porudzbine">
-            <td>{{porudzbina.KORISNICI_ID_USERNAME}}</td>
-            <td>{{porudzbina.PROIZVOD_ID_IME}}</td>
+            <td>{{porudzbina.KORISNICI_ID}}</td>
+            <td>{{porudzbina.PROIZVOD_ID}}</td>
             <td>{{porudzbina.DATUM}}</td>
             <td>
-                <button class="btn btn-danger" title="remove" (click)="removeOrder(porudzbina.id)">
+                <button class="btn btn-danger" title="remove" (click)="removeOrder(porudzbina.ID)">
                     <span class="glyphicon glyphicon-remove"></span>
                 </button>
             </td>

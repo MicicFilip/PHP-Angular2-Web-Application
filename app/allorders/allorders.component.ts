@@ -17,7 +17,6 @@ export class AllOrdersComponent {
     http: Http;
     router: Router;
     postResponse: String;
-
     porudzbine: Object[];
 
     constructor(builder: FormBuilder, http: Http,  router: Router) {
@@ -34,33 +33,22 @@ export class AllOrdersComponent {
                     setInterval(function(){
                         $('table').DataTable();
                     },200);
+                },
+                err => {
+                    this.router.parent.navigate(['./MainPage']);
                 }
-                // ,
-                // err => {
-                //     this.router.parent.navigate(['./MainPage']);
-                // }
             );
     }
 
-    public removeOrder(id){
-        var data = "id="+id;
+    public removeOrder(item: Number){
+
         var headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('token', localStorage.getItem('token'));
-        this.http.post('http://localhost/phpispit/deleteorder.php',data, {headers:headers})
+        this.http.get('http://localhost/phpispit/deleteorder.php?id='+item,{headers:headers})
             .map(res => res)
-            .subscribe( data => console.log(data),
-                err => {
-                    var obj = JSON.parse(err._body);
-                    document.getElementsByClassName("alert")[0].style.display = "block";
-                    document.getElementsByClassName("alert")[0].innerHTML = obj.error.split("\\r\\n").join("<br/>").split("\"").join("");
-                },
-                () => {
-                    alert("obrisana porudzbina")
+            .subscribe( data => this.postResponse = data);
+                location.reload();
                 }
-            );
-    }
-
-
 
 }

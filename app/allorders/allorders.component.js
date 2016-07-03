@@ -44,22 +44,19 @@ System.register(['angular2/core', 'angular2/common', 'angular2/http', 'rxjs/Rx',
                         setInterval(function () {
                             $('table').DataTable();
                         }, 200);
+                    }, function (err) {
+                        _this.router.parent.navigate(['./MainPage']);
                     });
                 }
-                AllOrdersComponent.prototype.removeOrder = function (id) {
-                    var data = "id=" + id;
+                AllOrdersComponent.prototype.removeOrder = function (item) {
+                    var _this = this;
                     var headers = new http_1.Headers();
                     headers.append('Content-Type', 'application/x-www-form-urlencoded');
                     headers.append('token', localStorage.getItem('token'));
-                    this.http.post('http://localhost/phpispit/deleteorder.php', data, { headers: headers })
+                    this.http.get('http://localhost/phpispit/deleteorder.php?id=' + item, { headers: headers })
                         .map(function (res) { return res; })
-                        .subscribe(function (data) { return console.log(data); }, function (err) {
-                        var obj = JSON.parse(err._body);
-                        document.getElementsByClassName("alert")[0].style.display = "block";
-                        document.getElementsByClassName("alert")[0].innerHTML = obj.error.split("\\r\\n").join("<br/>").split("\"").join("");
-                    }, function () {
-                        alert("obrisana porudzbina");
-                    });
+                        .subscribe(function (data) { return _this.postResponse = data; });
+                    location.reload();
                 };
                 AllOrdersComponent = __decorate([
                     core_1.Component({

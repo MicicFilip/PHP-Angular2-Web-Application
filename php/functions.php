@@ -288,47 +288,85 @@ function orderProduct($id){
 	}
 }
 
+//function getOrder(){
+//	global $conn;
+//	$rarray = array();
+//	if(checkIfLoggedIn()){
+//		$token = $_SERVER['HTTP_TOKEN'];
+//		$result = $conn->prepare("SELECT * FROM porudzbina WHERE KORISNICI_ID=(SELECT ID FROM KORISNICI WHERE TOKEN=?)");
+//		$result->bind_param("s",$token);
+//		$result->execute();
+//		$result->store_result();
+//		$num_rows = $result->num_rows;
+//		$porudzbine = array();
+//		if($num_rows > 0)
+//		{
+//			//$result2 = $conn->query("SELECT proizvod.ID as id, proizvod.IME as ime, proizvod.CENA as cena, proizvod.OPIS as opis, kategorija_prozivoda.IME as kategorija FROM proizvod, kategorija_prozivoda WHERE kategorija_proizvoda.ID=prozivod.KATEGORIJA_PROIZVODA_ID");
+//			//$result2 = $conn->prepare("SELECT proizvod.ID as id, proizvod.IME as ime, proizvod.CENA as cena, proizvod.OPIS as opis, kategorija_prozivoda.IME as kategorija FROM proizvod, kategorija_prozivoda WHERE kategorija_proizvoda.ID=prozivod.KATEGORIJA_PROIZVODA_ID");
+//			$result2 = $conn->prepare("SELECT por.ID as id, pro.IME as ime, pro.OCENA as ocena, pro.OPIS as opis FROM porudzbina as por, proizvod as pro WHERE por.KORISNICI_ID=(SELECT ID FROM KORISNICI WHERE TOKEN=?) and por.PROIZVOD_ID=pro.ID");
+//			$result2->bind_param("s",$token);
+//			$result2->execute();
+//			$result2->store_result();
+//			while($row = $result2->fetch_assoc()) {
+//				array_push($porudzbine,$row);
+//			}
+//		}
+//		$rarray['porudzbine'] = $porudzbine;
+//		return json_encode($rarray);
+//	} else{
+//		$rarray['error'] = "Please log in";
+//		header('HTTP/1.1 401 Unauthorized');
+//		return json_encode($rarray);
+//	}
+//}
+
 function getOrder(){
 	global $conn;
 	$rarray = array();
-	if(checkIfLoggedIn()){
+
+	if(checkIfLoggedIn()) {
 		$token = $_SERVER['HTTP_TOKEN'];
-		$result = $conn->prepare("SELECT * FROM porudzbine WHERE KORISNICI_ID=(SELECT ID FROM KORISNICI WHERE TOKEN=?)");
+		$result = $conn->prepare("SELECT * FROM porudzbina WHERE KORISNICI_ID=(SELECT ID FROM KORISNICI WHERE TOKEN=?)");
 		$result->bind_param("s",$token);
 		$result->execute();
 		$result->store_result();
 		$num_rows = $result->num_rows;
 		$porudzbine = array();
-		if($num_rows > 0)
-		{
-			//$result2 = $conn->query("SELECT proizvod.ID as id, proizvod.IME as ime, proizvod.CENA as cena, proizvod.OPIS as opis, kategorija_prozivoda.IME as kategorija FROM proizvod, kategorija_prozivoda WHERE kategorija_proizvoda.ID=prozivod.KATEGORIJA_PROIZVODA_ID");
-			//$result2 = $conn->prepare("SELECT proizvod.ID as id, proizvod.IME as ime, proizvod.CENA as cena, proizvod.OPIS as opis, kategorija_prozivoda.IME as kategorija FROM proizvod, kategorija_prozivoda WHERE kategorija_proizvoda.ID=prozivod.KATEGORIJA_PROIZVODA_ID");
-			$result2 = $conn->prepare("SELECT por.ID as id, pro.IME as ime, pro.OCENA as ocena, pro.OPIS as opis FROM porudzbine as por, proizvod as pro WHERE por.KORISNICI_ID=(SELECT ID FROM KORISNICI WHERE TOKEN=?) and por.PROIZVOD_ID=pro.ID");
-			$result2->bind_param("s",$token);
-			$result2->execute();
-			$result2->store_result();
+		if($num_rows > 0){
+			$result2 = $conn->query("SELECT * FROM porudzbina");
 			while($row = $result2->fetch_assoc()) {
 				array_push($porudzbine,$row);
 			}
 		}
 		$rarray['porudzbine'] = $porudzbine;
 		return json_encode($rarray);
-	} else{
+	}else{
 		$rarray['error'] = "Please log in";
 		header('HTTP/1.1 401 Unauthorized');
 		return json_encode($rarray);
 	}
 }
 
+//function deleteOrder($id){
+//	global $conn;
+//	if(checkIfLoggedIn()){
+//		$token = $_SERVER['HTTP_TOKEN'];
+//		//stavljam i id korisnika iz sigurnosnih razloga, ako neko brise porudzbine sa random brojevima
+//		$result = $conn->prepare("DELETE FROM porudzbina WHERE ID=? AND KORISNICI_ID=(SELECT ID FROM korisnici WHERE TOKEN=?)");
+//		$result->bind_param("is",$id,$token);
+//		$result->execute();
+//	}
+//}
+
+
 function deleteOrder($id){
 	global $conn;
 	if(checkIfLoggedIn()){
-		$token = $_SERVER['HTTP_TOKEN'];
+		//$token = $_SERVER['HTTP_TOKEN'];
 		//stavljam i id korisnika iz sigurnosnih razloga, ako neko brise porudzbine sa random brojevima
-		$result = $conn->prepare("DELETE FROM porudzbina WHERE ID=? AND KORISNICI_ID=(SELECT ID FROM korisnici WHERE TOKEN=?)");
-		$result->bind_param("ss",$id,$token);
+		$result = $conn->prepare("DELETE FROM porudzbina WHERE ID=?");
+		$result->bind_param("i",$id);
 		$result->execute();
 	}
 }
-
 ?>
